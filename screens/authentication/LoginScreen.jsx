@@ -1,27 +1,41 @@
 import React, { useContext, useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "react-native";
 import { UserContext } from "../../context/UserContext";
+import axios from "axios";
+import querystring from "querystring";
 
 const Login = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const { login } = useContext(UserContext);
 
-    const handleLogin = () => {
-        // Kiểm tra thông tin đăng nhập (ví dụ: thông tin giả)
-        if (username === "quy1" && password === "12345678") {
-            login(username, password);
-            // Điều hướng tới màn hình Home với tham số
-            navigation.navigate("Home", { name: username, resetCredentials: resetCredentials });
-        } else {
-            // Hiển thị thông báo lỗi
-            Alert.alert("Login failed", "Invalid username or password");
-        }
-    };
+    const handleLogin = async () => {
+        try {
+            const data = querystring.stringify({
+                userName: username,
+                password: password,
+            });
 
-    const resetCredentials = () => {
-        setUsername("");
-        setPassword("");
+            const response = await axios.post("https://api.21110282.codes/api/v1/users/login", data, {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            });
+
+            if (!response.data.error) {
+                login(username, password);
+
+                setUsername("");
+                setPassword("");
+
+                navigation.navigate("Home", { name: response.data.user.fullName });
+            } else {
+                // Hiển thị thông báo lỗi
+                Alert.alert("Login failed", response.data.message);
+            }
+        } catch (error) {
+            Alert.alert("Login failed", "An error occurred. Please try again.");
+        }
     };
 
     return (
