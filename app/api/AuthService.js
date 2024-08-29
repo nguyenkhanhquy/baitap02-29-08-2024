@@ -1,9 +1,9 @@
 import AxiosClient from "./AxiosClient";
 import { LOGIN_ENDPOINT, REGISTER_ENDPOINT } from "./Endpoints";
 
-export const registerUser = async (userName, password) => {
+export const registerUser = async (userName, fullName, email, phone, password) => {
     try {
-        const data = { userName, password };
+        const data = { userName, fullName, email, phone, password };
         const response = await AxiosClient.post(REGISTER_ENDPOINT, data);
         return response.data;
     } catch (error) {

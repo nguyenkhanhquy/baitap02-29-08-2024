@@ -3,16 +3,16 @@ import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "reac
 import { loginUser } from "../../api/AuthService";
 
 const Login = ({ navigation }) => {
-    const [username, setUsername] = useState("");
+    const [userName, setuserName] = useState("");
     const [password, setPassword] = useState("");
 
     const handleLogin = async () => {
         try {
-            const data = await loginUser(username, password);
+            const data = await loginUser(userName, password);
             if (data.error) {
                 Alert.alert("Login failed", data.message);
             } else {
-                setUsername("");
+                setuserName("");
                 setPassword("");
                 navigation.navigate("Home", { name: data.user.fullName });
             }
@@ -25,7 +25,7 @@ const Login = ({ navigation }) => {
         <View style={styles.container}>
             <Text style={styles.title}>Login Page</Text>
 
-            <TextInput style={styles.input} placeholder="Username" value={username} onChangeText={setUsername} />
+            <TextInput style={styles.input} placeholder="userName" value={userName} onChangeText={setuserName} />
             <TextInput
                 style={styles.input}
                 placeholder="Password"
