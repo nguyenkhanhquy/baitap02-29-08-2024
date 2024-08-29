@@ -1,45 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "react-native";
-import { UserContext } from "../../context/UserContext";
-import axios from "axios";
+import { registerUser } from "../../api/AuthService";
 
-const Login = ({ navigation }) => {
+const Register = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const { login } = useContext(UserContext);
 
-    const handleLogin = async () => {
+    const handleRegister = async () => {
         try {
-            const data = {
-                userName: username,
-                password: password,
-            };
+            const data = await registerUser(username, password);
 
-            const response = await axios.post("https://api.21110282.codes/api/v1/users/login", data, {
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-            });
-
-            if (!response.data.error) {
-                login(username, password);
-
-                setUsername("");
-                setPassword("");
-
-                navigation.navigate("Home", { name: response.data.user.fullName });
+            if (data.error) {
+                Alert.alert("Register failed", data.message);
             } else {
-                // Hiển thị thông báo lỗi
-                Alert.alert("Login failed", response.data.message);
+                navigation.navigate("Login");
             }
         } catch (error) {
-            Alert.alert("Login failed", "An error occurred. Please try again.");
+            Alert.alert("Register failed", "An error occurred. Please try again.");
         }
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Login Page</Text>
+            <Text style={styles.title}>Register Page</Text>
 
             <TextInput style={styles.input} placeholder="Username" value={username} onChangeText={setUsername} />
             <TextInput
@@ -50,12 +33,12 @@ const Login = ({ navigation }) => {
                 onChangeText={setPassword}
             />
 
-            <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                <Text style={styles.buttonText}>Login</Text>
+            <TouchableOpacity style={styles.button} onPress={handleRegister}>
+                <Text style={styles.buttonText}>Register</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Register")}>
-                <Text style={styles.buttonText}>Register</Text>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Login")}>
+                <Text style={styles.buttonText}>Back</Text>
             </TouchableOpacity>
         </View>
     );
@@ -97,4 +80,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Login;
+export default Register;

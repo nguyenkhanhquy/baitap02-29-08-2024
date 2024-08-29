@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
+
 // Import hình ảnh từ thư mục cục bộ
 import profileImage from "../assets/cat.jpg";
 
@@ -7,7 +8,7 @@ const Intro = ({ navigation }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             navigation.replace("Login");
-        }, 3000);
+        }, 2000);
 
         return () => clearTimeout(timer);
     }, [navigation]);

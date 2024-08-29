@@ -1,14 +1,10 @@
-import React, { useContext } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { UserContext } from "../../context/UserContext";
 
 const Home = ({ navigation, route }) => {
     // Lấy tham số từ route
     const { name } = route.params;
-    const { logout } = useContext(UserContext);
 
     const handleLogout = () => {
-        logout();
         navigation.navigate("Login");
     };
 
