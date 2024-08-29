@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "react-native";
-import { loginUser } from "../../api/AuthAPIService";
+import { login } from "../../api/AuthAPIService";
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -8,7 +8,7 @@ const Login = ({ navigation }) => {
 
     const handleLogin = async () => {
         try {
-            const data = await loginUser(email, password);
+            const data = await login(email, password);
             if (data.error) {
                 Alert.alert("Login failed", data.message);
             } else {

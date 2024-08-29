@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "react-native";
-import { registerUser } from "../../api/AuthAPIService";
+import { register } from "../../api/AuthAPIService";
 
 const Register = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -9,7 +9,7 @@ const Register = ({ navigation }) => {
 
     const handleRegister = async () => {
         try {
-            const data = await registerUser(email, fullName, password);
+            const data = await register(email, fullName, password);
 
             if (data.error) {
                 Alert.alert("Register failed", data.message);

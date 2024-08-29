@@ -11,7 +11,7 @@ const Home = ({ navigation, route }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Home Page</Text>
-            <Text style={styles.profile}>This is {name}'s profile</Text>
+            <Text style={styles.profile}>Hello {name}</Text>
 
             <TouchableOpacity style={styles.button} onPress={handleLogout}>
                 <Text style={styles.buttonText}>Logout</Text>
