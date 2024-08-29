@@ -1,18 +1,32 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "react-native";
+import axios from "axios";
 
 const Register = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleRegister = () => {
-        // Kiểm tra thông tin đăng ký
-        if (username === "111" && password === "111") {
-            // Điều hướng tới màn hình Home với tham số
-            navigation.navigate("Login", { username: username, password: password });
-        } else {
-            // Hiển thị thông báo lỗi
-            Alert.alert("Register failed", "Invalid username or password");
+    const handleRegister = async () => {
+        try {
+            const data = {
+                userName: username,
+                password: password,
+            };
+
+            const response = await axios.post("https://api.21110282.codes/api/v1/users/register", data, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!response.data.error) {
+                navigation.navigate("Login");
+            } else {
+                // Hiển thị thông báo lỗi
+                Alert.alert("Register failed", response.data.message);
+            }
+        } catch (error) {
+            Alert.alert("Register failed", "An error occurred. Please try again.");
         }
     };
 

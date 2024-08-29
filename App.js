@@ -2,12 +2,12 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Intro from "./screens/IntroScreen";
-import Login from "./screens/authentication/LoginScreen";
-import Register from "./screens/authentication/RegisterScreen";
-import Home from "./screens/home/HomeScreen";
+import Intro from "./app/screens/IntroScreen";
+import Login from "./app/screens/auth/LoginScreen";
+import Register from "./app/screens/auth/RegisterScreen";
+import Home from "./app/screens/home/HomeScreen";
 
-import { UserProvider } from "./context/UserContext";
+import { UserProvider } from "./app/context/UserContext";
 
 const Stack = createNativeStackNavigator();
 

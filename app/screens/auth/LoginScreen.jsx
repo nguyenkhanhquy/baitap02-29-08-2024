@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "react-native";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
-import querystring from "querystring";
 
 const Login = ({ navigation }) => {
     const [username, setUsername] = useState("");
@@ -11,10 +10,10 @@ const Login = ({ navigation }) => {
 
     const handleLogin = async () => {
         try {
-            const data = querystring.stringify({
+            const data = {
                 userName: username,
                 password: password,
-            });
+            };
 
             const response = await axios.post("https://api.21110282.codes/api/v1/users/login", data, {
                 headers: {
