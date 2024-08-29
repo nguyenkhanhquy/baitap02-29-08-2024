@@ -1,10 +1,8 @@
 import AxiosClient from "./AxiosClient";
-import { LOGIN_ENDPOINT, REGISTER_ENDPOINT } from "./Endpoints";
 
-export const registerUser = async (userName, fullName, email, phone, password) => {
+const postRequest = async (url, data, headers) => {
     try {
-        const data = { userName, fullName, email, phone, password };
-        const response = await AxiosClient.post(REGISTER_ENDPOINT, data);
+        const response = await AxiosClient.post(url, data, { headers });
         return response.data;
     } catch (error) {
         throw error;
@@ -12,15 +10,13 @@ export const registerUser = async (userName, fullName, email, phone, password) =
 };
 
 export const loginUser = async (userName, password) => {
-    try {
-        const data = { userName, password };
-        const response = await AxiosClient.post(LOGIN_ENDPOINT, data, {
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-        });
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
+    const data = new URLSearchParams({ userName, password }).toString();
+    return postRequest("users/login", data, {
+        "Content-Type": "application/x-www-form-urlencoded",
+    });
+};
+
+export const registerUser = async (userName, fullName, email, phone, password) => {
+    const data = { userName, fullName, email, phone, password };
+    return postRequest("users/register", data);
 };

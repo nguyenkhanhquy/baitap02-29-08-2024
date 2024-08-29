@@ -25,7 +25,7 @@ const Login = ({ navigation }) => {
         <View style={styles.container}>
             <Text style={styles.title}>Login Page</Text>
 
-            <TextInput style={styles.input} placeholder="userName" value={userName} onChangeText={setuserName} />
+            <TextInput style={styles.input} placeholder="User Name" value={userName} onChangeText={setuserName} />
             <TextInput
                 style={styles.input}
                 placeholder="Password"
