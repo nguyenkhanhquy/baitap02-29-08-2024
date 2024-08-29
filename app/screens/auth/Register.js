@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "react-native";
-import { registerUser } from "../../api/AuthService";
+import { registerUser } from "../../api/AuthAPIService";
 
 const Register = ({ navigation }) => {
     const [userName, setuserName] = useState("");
