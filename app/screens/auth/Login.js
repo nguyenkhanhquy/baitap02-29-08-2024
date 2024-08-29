@@ -35,7 +35,13 @@ const Login = ({ navigation }) => {
                 onChangeText={setPassword}
             />
 
-            <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
+            <TouchableOpacity
+                onPress={() => {
+                    setEmail("");
+                    setPassword("");
+                    navigation.navigate("ForgotPassword");
+                }}
+            >
                 <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
             </TouchableOpacity>
 

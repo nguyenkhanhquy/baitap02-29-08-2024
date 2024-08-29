@@ -24,7 +24,7 @@ const Home = ({ navigation, route }) => {
 const styles = StyleSheet.create({
     profile: {
         fontSize: 20,
-        marginBottom: 10,
+        marginBottom: 20,
     },
 });
 
