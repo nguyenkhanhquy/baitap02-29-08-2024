@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import CommonStyles from "../style/CommonStyles";
 
 const Home = ({ navigation, route }) => {
     // Lấy tham số từ route
@@ -9,44 +10,21 @@ const Home = ({ navigation, route }) => {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Home Page</Text>
+        <View style={CommonStyles.container}>
+            <Text style={CommonStyles.title}>Home Page</Text>
             <Text style={styles.profile}>Hello {name}</Text>
 
-            <TouchableOpacity style={styles.button} onPress={handleLogout}>
-                <Text style={styles.buttonText}>Logout</Text>
+            <TouchableOpacity style={CommonStyles.button} onPress={handleLogout}>
+                <Text style={CommonStyles.buttonText}>Logout</Text>
             </TouchableOpacity>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 20,
-    },
-    title: {
-        fontSize: 32,
-    },
     profile: {
-        fontSize: 16,
+        fontSize: 20,
         marginBottom: 10,
-    },
-    button: {
-        width: "25%",
-        height: 40,
-        backgroundColor: "#007bff",
-        borderRadius: 5,
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: 15,
-    },
-    buttonText: {
-        color: "#fff",
-        fontSize: 16,
     },
 });
 

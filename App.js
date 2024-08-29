@@ -7,6 +7,7 @@ import Intro from "./app/screens/Intro";
 import Login from "./app/screens/auth/Login";
 import Register from "./app/screens/auth/Register";
 import Home from "./app/screens/home/Home";
+import ForgotPassword from "./app/screens/auth/ForgotPassword";
 
 // Tạo Stack Navigator
 const Stack = createNativeStackNavigator();
@@ -24,6 +25,7 @@ const App = () => {
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Register" component={Register} />
                 <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
             </Stack.Navigator>
         </NavigationContainer>
     );

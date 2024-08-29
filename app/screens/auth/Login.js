@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "react-native";
 import { login } from "../../api/AuthAPIService";
+import CommonStyles from "../style/CommonStyles";
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -22,69 +23,44 @@ const Login = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Login Page</Text>
+        <View style={CommonStyles.container}>
+            <Text style={CommonStyles.title}>Login Page</Text>
 
-            <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
+            <TextInput style={CommonStyles.input} placeholder="Email" value={email} onChangeText={setEmail} />
             <TextInput
-                style={styles.input}
+                style={CommonStyles.input}
                 placeholder="Password"
                 secureTextEntry
                 value={password}
                 onChangeText={setPassword}
             />
 
-            <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                <Text style={styles.buttonText}>Login</Text>
+            <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
+                <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={CommonStyles.button} onPress={handleLogin}>
+                <Text style={CommonStyles.buttonText}>Login</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-                style={styles.button}
+                style={CommonStyles.button}
                 onPress={() => {
                     setEmail("");
                     setPassword("");
                     navigation.navigate("Register");
                 }}
             >
-                <Text style={styles.buttonText}>Register</Text>
+                <Text style={CommonStyles.buttonText}>Register</Text>
             </TouchableOpacity>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 20,
-    },
-    title: {
-        fontSize: 32,
-        marginBottom: 20,
-    },
-    input: {
-        width: "100%",
-        height: 40,
-        borderColor: "#ddd",
-        borderWidth: 1,
-        borderRadius: 5,
-        paddingHorizontal: 10,
+    forgotPasswordText: {
+        color: "#007bff",
         marginBottom: 15,
-    },
-    button: {
-        width: "25%",
-        height: 40,
-        backgroundColor: "#007bff",
-        borderRadius: 5,
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: 15,
-    },
-    buttonText: {
-        color: "#fff",
-        fontSize: 16,
     },
 });
 
