@@ -3,18 +3,18 @@ import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "reac
 import { loginUser } from "../../api/AuthAPIService";
 
 const Login = ({ navigation }) => {
-    const [userName, setuserName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleLogin = async () => {
         try {
-            const data = await loginUser(userName, password);
+            const data = await loginUser(email, password);
             if (data.error) {
                 Alert.alert("Login failed", data.message);
             } else {
-                setuserName("");
+                setEmail("");
                 setPassword("");
-                navigation.navigate("Home", { name: data.user.fullName });
+                navigation.navigate("Home", { name: data.userDTO.fullName });
             }
         } catch (error) {
             Alert.alert("Login failed", "An error occurred. Please try again.");
@@ -25,7 +25,7 @@ const Login = ({ navigation }) => {
         <View style={styles.container}>
             <Text style={styles.title}>Login Page</Text>
 
-            <TextInput style={styles.input} placeholder="User Name" value={userName} onChangeText={setuserName} />
+            <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
             <TextInput
                 style={styles.input}
                 placeholder="Password"
@@ -38,7 +38,14 @@ const Login = ({ navigation }) => {
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Register")}>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => {
+                    setEmail("");
+                    setPassword("");
+                    navigation.navigate("Register");
+                }}
+            >
                 <Text style={styles.buttonText}>Register</Text>
             </TouchableOpacity>
         </View>

@@ -3,15 +3,13 @@ import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "reac
 import { registerUser } from "../../api/AuthAPIService";
 
 const Register = ({ navigation }) => {
-    const [userName, setuserName] = useState("");
-    const [fullName, setfullName] = useState("");
     const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
+    const [fullName, setfullName] = useState("");
     const [password, setPassword] = useState("");
 
     const handleRegister = async () => {
         try {
-            const data = await registerUser(userName, fullName, email, phone, password);
+            const data = await registerUser(email, fullName, password);
 
             if (data.error) {
                 Alert.alert("Register failed", data.message);
@@ -27,10 +25,8 @@ const Register = ({ navigation }) => {
         <View style={styles.container}>
             <Text style={styles.title}>Register Page</Text>
 
-            <TextInput style={styles.input} placeholder="User Name" value={userName} onChangeText={setuserName} />
-            <TextInput style={styles.input} placeholder="Full Name" value={fullName} onChangeText={setfullName} />
             <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
-            <TextInput style={styles.input} placeholder="Phone" value={phone} onChangeText={setPhone} />
+            <TextInput style={styles.input} placeholder="Full Name" value={fullName} onChangeText={setfullName} />
             <TextInput
                 style={styles.input}
                 placeholder="Password"
