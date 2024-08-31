@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 
 // Import hình ảnh từ thư mục cục bộ
-import profileImage from "../assets/cat.jpg";
+import profileImage from "../assets/img/cat.jpg";
 
 const Intro = ({ navigation }) => {
     useEffect(() => {

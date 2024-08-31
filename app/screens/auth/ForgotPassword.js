@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "react-native";
 import { forgotPassword } from "../../api/AuthAPIService";
-import CommonStyles from "../style/CommonStyles";
+import CommonStyles from "../../assets/styles/CommonStyles";
 
 const ForgotPassword = ({ navigation }) => {
     const [email, setEmail] = useState("");
