@@ -18,12 +18,12 @@ const postRequest = async (url, data, headers) => {
 
 export const login = async (email, password) => {
     const data = { email, password };
-    return postRequest("users/login", data);
+    return postRequest("auth/login", data);
 };
 
 export const register = async (email, fullName, password) => {
     const data = { email, fullName, password };
-    return postRequest("users/register", data);
+    return postRequest("auth/register", data);
 };
 
 export const forgotPassword = async (email) => {

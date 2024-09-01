@@ -15,7 +15,7 @@ const Login = ({ navigation }) => {
             } else {
                 setEmail("");
                 setPassword("");
-                navigation.navigate("Home", { name: data.userDTO.fullName });
+                navigation.navigate("Home", { name: data.result.fullName });
             }
         } catch (error) {
             Alert.alert("Login failed", "An error occurred. Please try again.");
