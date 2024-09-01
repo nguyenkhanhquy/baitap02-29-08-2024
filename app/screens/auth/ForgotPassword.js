@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity, ActivityIndicator } from "react-native";
-import { forgotPassword } from "../../api/AuthAPIService";
+import { forgotPassword, validateOtp } from "../../api/AuthAPIService";
 import CommonStyles from "../../assets/styles/CommonStyles";
 import Toast from "react-native-toast-message";
 
@@ -40,7 +40,20 @@ const ForgotPassword = ({ navigation }) => {
     };
 
     const handleConfirmOTP = async () => {
-        // Logic xác nhận OTP
+        setLoading(true);
+        try {
+            const data = await validateOtp(email, otp);
+            if (data.error) {
+                showToast("error", "Error", data.message);
+            } else {
+                showToast("success", "Success", data.message);
+                navigation.navigate("ResetPassword", { email: email });
+            }
+        } catch (error) {
+            showToast("error", "Error", "An error occurred. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

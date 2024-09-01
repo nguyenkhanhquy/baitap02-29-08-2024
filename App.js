@@ -9,6 +9,7 @@ import Login from "./app/screens/auth/Login";
 import Register from "./app/screens/auth/Register";
 import Home from "./app/screens/home/Home";
 import ForgotPassword from "./app/screens/auth/ForgotPassword";
+import ResetPassword from "./app/screens/auth/ResetPassword";
 
 // Tạo Stack Navigator
 const Stack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ const App = () => {
                 <Stack.Screen name="Register" component={Register} />
                 <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+                <Stack.Screen name="ResetPassword" component={ResetPassword} />
             </Stack.Navigator>
             <Toast />
         </NavigationContainer>

@@ -34,3 +34,21 @@ export const forgotPassword = async (email) => {
         },
     });
 };
+
+export const validateOtp = async (email, otp) => {
+    const data = { email, otp };
+    return postRequest("auth/validate-otp", data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    });
+};
+
+export const resetPassword = async (email, newPassword) => {
+    const data = { email, newPassword };
+    return postRequest("auth/reset-password", data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    });
+};
