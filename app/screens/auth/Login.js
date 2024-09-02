@@ -10,12 +10,13 @@ const Login = ({ navigation }) => {
     const handleLogin = async () => {
         try {
             const data = await login(email, password);
-            if (data.error) {
-                Alert.alert("Login failed", data.message);
-            } else {
+
+            if (data.success) {
                 setEmail("");
                 setPassword("");
                 navigation.navigate("Home", { name: data.result.fullName });
+            } else {
+                Alert.alert("Login failed", data.message);
             }
         } catch (error) {
             Alert.alert("Login failed", "An error occurred. Please try again.");

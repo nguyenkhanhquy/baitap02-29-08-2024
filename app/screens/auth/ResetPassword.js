@@ -12,11 +12,12 @@ const ResetPassword = ({ navigation, route }) => {
     const handleResetPassword = async () => {
         try {
             const data = await resetPassword(email, newPassword);
-            if (data.error) {
-                Alert.alert("Error", data.message);
-            } else {
+
+            if (data.success) {
                 Alert.alert("Success", data.message);
                 navigation.navigate("Login");
+            } else {
+                Alert.alert("Error", data.message);
             }
         } catch (error) {
             Alert.alert("Error", "An error occurred. Please try again.");
@@ -30,6 +31,7 @@ const ResetPassword = ({ navigation, route }) => {
             <TextInput
                 style={CommonStyles.input}
                 placeholder="New Password"
+                secureTextEntry
                 value={newPassword}
                 onChangeText={setNewPassword}
             />

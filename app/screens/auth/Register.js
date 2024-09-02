@@ -12,10 +12,11 @@ const Register = ({ navigation }) => {
         try {
             const data = await register(email, fullName, password);
 
-            if (data.error) {
-                Alert.alert("Register failed", data.message);
-            } else {
+            if (data.success) {
+                Alert.alert("Success", data.message);
                 navigation.navigate("Login");
+            } else {
+                Alert.alert("Register failed", data.message);
             }
         } catch (error) {
             Alert.alert("Register failed", "An error occurred. Please try again.");

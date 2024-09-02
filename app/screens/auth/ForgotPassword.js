@@ -26,11 +26,12 @@ const ForgotPassword = ({ navigation }) => {
         setLoading(true);
         try {
             const data = await forgotPassword(email);
-            if (data.error) {
-                showToast("error", "Error", data.message);
-            } else {
+
+            if (data.success) {
                 showToast("success", "Success", data.message);
                 setOtpSent(true);
+            } else {
+                showToast("error", "Error", data.message);
             }
         } catch (error) {
             showToast("error", "Error", "An error occurred. Please try again.");
@@ -43,11 +44,12 @@ const ForgotPassword = ({ navigation }) => {
         setLoading(true);
         try {
             const data = await validateOtp(email, otp);
-            if (data.error) {
-                showToast("error", "Error", data.message);
-            } else {
+
+            if (data.success) {
                 showToast("success", "Success", data.message);
                 navigation.navigate("ResetPassword", { email: email });
+            } else {
+                showToast("error", "Error", data.message);
             }
         } catch (error) {
             showToast("error", "Error", "An error occurred. Please try again.");
