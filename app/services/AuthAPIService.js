@@ -1,4 +1,4 @@
-import AxiosClient from "./AxiosClient";
+import AxiosClient from "../api/AxiosClient";
 
 const postRequest = async (url, data, headers) => {
     try {

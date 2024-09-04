@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Toast from "react-native-toast-message";
 
 // Import các màn hình
-import Intro from "./app/screens/Intro";
+import Intro from "./app/screens/splash/Intro";
 import Login from "./app/screens/auth/Login";
 import Register from "./app/screens/auth/Register";
 import Home from "./app/screens/home/Home";

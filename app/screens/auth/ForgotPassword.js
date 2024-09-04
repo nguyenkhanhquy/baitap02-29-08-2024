@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity, ActivityIndicator } from "react-native";
-import { forgotPassword, validateOtp } from "../../api/AuthAPIService";
+import { forgotPassword, validateOtp } from "../../services/AuthAPIService";
 import CommonStyles from "../../assets/styles/CommonStyles";
 import Toast from "react-native-toast-message";
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "react-native";
-import { login } from "../../api/AuthAPIService";
+import { login } from "../../services/AuthAPIService";
 import CommonStyles from "../../assets/styles/CommonStyles";
 
 const Login = ({ navigation }) => {
@@ -14,7 +14,7 @@ const Login = ({ navigation }) => {
             if (data.success) {
                 setEmail("");
                 setPassword("");
-                navigation.navigate("Home", { name: data.result.fullName });
+                navigation.navigate("Home", { message: data.message });
             } else {
                 Alert.alert("Login failed", data.message);
             }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Alert, TouchableOpacity } from "react-native";
-import { resetPassword } from "../../api/AuthAPIService";
+import { resetPassword } from "../../services/AuthAPIService";
 import CommonStyles from "../../assets/styles/CommonStyles";
 
 const ResetPassword = ({ navigation, route }) => {
