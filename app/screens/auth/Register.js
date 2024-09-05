@@ -7,8 +7,15 @@ const Register = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [fullName, setfullName] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleRegister = async () => {
+        // Kiểm tra mật khẩu và mật khẩu nhập lại có khớp không
+        if (password !== confirmPassword) {
+            Alert.alert("Error", "Passwords do not match");
+            return;
+        }
+
         try {
             const data = await register(email, fullName, password);
 
@@ -28,13 +35,22 @@ const Register = ({ navigation }) => {
             <Text style={CommonStyles.title}>Register Page</Text>
 
             <TextInput style={CommonStyles.input} placeholder="Email" value={email} onChangeText={setEmail} />
+
             <TextInput style={CommonStyles.input} placeholder="Full Name" value={fullName} onChangeText={setfullName} />
+
             <TextInput
                 style={CommonStyles.input}
                 placeholder="Password"
                 secureTextEntry
                 value={password}
                 onChangeText={setPassword}
+            />
+            <TextInput
+                style={CommonStyles.input}
+                placeholder="Confirm Password"
+                secureTextEntry
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
             />
 
             <TouchableOpacity style={CommonStyles.button} onPress={handleRegister}>

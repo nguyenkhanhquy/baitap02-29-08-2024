@@ -5,11 +5,18 @@ import CommonStyles from "../../assets/styles/CommonStyles";
 
 const ResetPassword = ({ navigation, route }) => {
     const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     // Lấy tham số từ route
     const { email } = route.params;
 
     const handleResetPassword = async () => {
+        // Kiểm tra mật khẩu và mật khẩu nhập lại có khớp không
+        if (newPassword !== confirmPassword) {
+            Alert.alert("Error", "Passwords do not match");
+            return;
+        }
+
         try {
             const data = await resetPassword(email, newPassword);
 
@@ -34,6 +41,13 @@ const ResetPassword = ({ navigation, route }) => {
                 secureTextEntry
                 value={newPassword}
                 onChangeText={setNewPassword}
+            />
+            <TextInput
+                style={CommonStyles.input}
+                placeholder="Confirm Password"
+                secureTextEntry
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
             />
 
             <TouchableOpacity style={CommonStyles.button} onPress={handleResetPassword}>
